@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { TableProps } from "./table";
 import { DescriptionsProps } from "./descriptions";
-import {ChartsModelProps} from './charts-modal';
+import {ChartsModelProps} from './charts-model';
 
 type PFCProps<T> = TableProps<T> | DescriptionsProps | ChartsModelProps
 
@@ -15,4 +15,4 @@ export * from './descriptions';
 
 export * from './table';
 
-export * from './charts-modal';
+export * from './charts-model';

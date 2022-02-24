@@ -1,26 +1,27 @@
 import React from 'react';
 import { PFC } from "../typing";
-import {LineConfig,ColumnConfig,PieConfig,RadarConfig} from '@ant-design/charts'
-import {Line,Column,Pie,Radar} from '@ant-design/charts';
+import {LineConfig,ColumnConfig,PieConfig,RadarConfig,DualAxesConfig} from '@ant-design/charts'
+import {Line,Column,Pie,Radar,DualAxes} from '@ant-design/charts';
 
-type ChartsModelType = 'line' | 'pie' | 'column' | 'radar'
+type ChartsModelType = 'line' | 'pie' | 'column' | 'radar' | 'dualaxes'
 
 interface ChartsModelProps {
   modelType?:ChartsModelType,
-  config:LineConfig | ColumnConfig | PieConfig | RadarConfig,
+  config:LineConfig | ColumnConfig | PieConfig | RadarConfig | DualAxesConfig,
   dataSource?:Record<string,any>[]
 }
 
-const ChartsModalExample:Record<ChartsModelType,React.ElementType> = {
+const ChartsmodelExample:Record<ChartsModelType,React.ElementType> = {
   line:Line,
   pie:Pie,
   column:Column,
   radar:Radar,
+  dualaxes:DualAxes
 }
 
 const ChartsModel:PFC<ChartsModelProps> = (props) => {
   const {modelType,config,dataSource} = props;
-  const Charts = modelType && ChartsModalExample?.[modelType] || null;
+  const Charts = modelType && ChartsmodelExample?.[modelType] || null;
   let _config = {
     ...config,
     data:dataSource,
