@@ -3,12 +3,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = createConfig('library',{
   webpack:{
-    externals:/(^react|^babel-runtime|^webpack|^antd|^@ant-design)/,
+    externals:/(^react|^babel-runtime|^webpack|^antd|^@ant-design|^lodash)/,
     module:{
       rules:[
         {
-          test:/.css$/,
-          use:[MiniCssExtractPlugin.loader,'css-loader']
+          test:/.(less|css)$/,
+          use:[MiniCssExtractPlugin.loader,'css-loader','less-loader']
         }
       ]
     },
