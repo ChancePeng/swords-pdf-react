@@ -3,3 +3,22 @@
     page-break-before: always;
   }
 }
+
+.pdf-table-column{
+  .table-column{
+    .table-column-tr{
+      display: flex;
+      &:first-child{
+        background-color: #fafafa;
+      }
+      .table-column-th{
+        flex: 1 1;
+        padding: 3px 10px;
+      }
+      .table-column-td{
+        flex: 1 1;
+        padding: 3px 10px;
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ import {get} from 'lodash';
 const renderEmpty = () => {
   return (
     <div>
-      <FrownOutlined style={{marginRight:10}} />哎呀卧槽,数据又跑丢了~
+      <FrownOutlined style={{marginRight:10}} />暂无数据~
     </div>
   )
 }
@@ -64,8 +64,6 @@ const Table:PFC<TableProps<{}>> = (props) => {
     
   )
 }
-
-Table.height = 200;
 
 export default Table;
 export {
