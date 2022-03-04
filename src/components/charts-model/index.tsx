@@ -24,11 +24,12 @@ const ChartsModel:PFC<ChartsModelProps> = (props) => {
   const Charts = modelType && ChartsmodelExample?.[modelType] || null;
   let _config = {
     ...config,
-    data:dataSource,
-  }
+    data:config.data ? config.data : []
+  };
+  dataSource && (_config.data = dataSource);
 
   return (
-    <div>
+    <div className='swords-ui-chart-model'>
       {Charts && <Charts {..._config} />}
     </div>
   )

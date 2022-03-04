@@ -35,7 +35,7 @@ const Descriptions:PFC<DescriptionsProps> = (props) => {
     return '-';
   }
   return (
-    <AntDescriptions {...params}>
+    <AntDescriptions {...params} className='swords-ui-descriptions'>
       {
         columns?.map((column,index) => {
           const {dataIndex,title,render,...others} = column;

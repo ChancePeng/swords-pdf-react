@@ -59,6 +59,7 @@ const Table:PFC<TableProps<{}>> = (props) => {
         rowKey={rowKey}
         columns={_columns}
         pagination={pagination}
+        className='swords-ui-table'
       />
     </ConfigProvider>
     

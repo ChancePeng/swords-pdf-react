@@ -11,12 +11,13 @@ interface ColumnType {
 
 interface Props {
   dataSource?:Record<string,any>[],
-  columns:ColumnType[],
-  tableTitle?:string,
+  columns?:ColumnType[] | ((data?:Record<string,any>[],record?:Record<string,any>) => ColumnType[]),
+  bordered?:boolean,
+  $data?:any
 }
 
 const TableColumn:PFC<Props> = (props) => {
-  const {columns=[],dataSource=[],tableTitle} = props;
+  const {columns=[],dataSource=[],bordered=false,$data} = props;
 
   const renderEachColumn = (key:string|undefined,column:ColumnType) => {
     const {render,align='left'} = column;
@@ -34,7 +35,7 @@ const TableColumn:PFC<Props> = (props) => {
       }
       return (
         <div 
-          className='table-column-td' 
+          className='swords-ui-table-column-td'
           style={{textAlign:align}} 
           key={`td-${index}`}
         >
@@ -45,26 +46,26 @@ const TableColumn:PFC<Props> = (props) => {
   }
 
   const renderEachRow = () => {
-    return columns?.map((item,index) => {
+    let _columns = columns;
+    if(_columns instanceof Function){
+      _columns = _columns(dataSource,$data)
+    }
+    return _columns?.map((item,index) => {
       const {dataIndex,title} = item;
-      
       return (
-        <div className='table-column-tr' key={`tr-${index}`}>
-          <div className="table-column-th">{title}</div>
+        <div className='swords-ui-table-column-tr' key={`tr-${index}`}>
+          <div className="swords-ui-table-column-th">{title}</div>
           {renderEachColumn(dataIndex,item)}
         </div>
       )
     })
   }
   return (
-    <div className='pdf-table-column'>
-      <div className='table-column'>
-        {
-          renderEachRow()
-        }
-      </div>
+    <div className={`swords-ui-table-column ${bordered ? 'swords-ui-table-column-bordered':''}`}>
+      {
+        renderEachRow()
+      }
     </div>
-    
   )
 }
 
