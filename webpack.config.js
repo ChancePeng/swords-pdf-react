@@ -1,5 +1,7 @@
 const {createConfig} = require('@swords/tools');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+console.log('hello')
 
 const config = createConfig('library',{
   webpack:{
@@ -19,5 +21,7 @@ const config = createConfig('library',{
     ]
   }
 });
+
+console.log(config)
 
 module.exports = config;

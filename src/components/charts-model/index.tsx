@@ -5,10 +5,12 @@ import {Line,Column,Pie,Radar,DualAxes} from '@ant-design/charts';
 
 type ChartsModelType = 'line' | 'pie' | 'column' | 'radar' | 'dualaxes'
 
+type ConfigType = LineConfig | ColumnConfig | PieConfig | RadarConfig | DualAxesConfig
+
 interface ChartsModelProps {
   modelType?:ChartsModelType,
-  config:LineConfig | ColumnConfig | PieConfig | RadarConfig | DualAxesConfig,
-  dataSource?:Record<string,any>[]
+  config:ConfigType | ((data?:any) => ConfigType)
+  dataSource?:Record<string,any>[] | Record<string,any>[][]
 }
 
 const ChartsmodelExample:Record<ChartsModelType,React.ElementType> = {
@@ -22,11 +24,20 @@ const ChartsmodelExample:Record<ChartsModelType,React.ElementType> = {
 const ChartsModel:PFC<ChartsModelProps> = (props) => {
   const {modelType,config,dataSource} = props;
   const Charts = modelType && ChartsmodelExample?.[modelType] || null;
-  let _config = {
-    ...config,
-    data:config.data ? config.data : []
-  };
-  dataSource && (_config.data = dataSource);
+  let _config:Record<string,any> | null = null;
+  if(config instanceof Function){
+    _config = config(dataSource)
+  }else{
+    _config = config;
+  }
+  if(_config){
+    if(!_config.data){
+      _config.data = []
+    }
+    if(dataSource){
+      _config.data = dataSource
+    }
+  }
 
   return (
     <div className='swords-ui-chart-model'>
