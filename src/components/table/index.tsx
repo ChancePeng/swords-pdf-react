@@ -4,6 +4,7 @@ import {Table as AntTable,ConfigProvider} from 'antd';
 import type {TableProps as AntTableProps,TableColumnType as AntTableColumnType} from 'antd';
 import {FrownOutlined} from '@ant-design/icons';
 import {get} from 'lodash';
+import SwordsTable from './table'
 
 const renderEmpty = () => {
   return (
@@ -52,16 +53,17 @@ const Table:PFC<TableProps<{}>> = (props) => {
     return item;
   }) || []
   return (
-    <ConfigProvider renderEmpty={renderEmpty}>
-      <AntTable
-        {...others} 
-        dataSource={dataSource}
-        rowKey={rowKey}
-        columns={_columns}
-        pagination={pagination}
-        className='swords-ui-table'
-      />
-    </ConfigProvider>
+    // <ConfigProvider renderEmpty={renderEmpty}>
+    //   <AntTable
+    //     {...others} 
+    //     dataSource={dataSource}
+    //     rowKey={rowKey}
+    //     columns={_columns}
+    //     pagination={pagination}
+    //     className='swords-ui-table'
+    //   />
+    // </ConfigProvider>
+    <SwordsTable dataSource={dataSource} columns={_columns} />
     
   )
 }
